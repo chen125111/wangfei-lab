@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研成果 - 王飞教授课题组</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/publications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-menu nav-menu-centered">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="team.html">团队成员</a></li>
+                <li><a href="research.html">研究方向</a></li>
+                <li><a href="publications.html" class="active">科研成果</a></li>
+                <li><a href="/management" target="_blank">内部管理</a></li>
+                <li><a href="contact.html">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面头部和标签切换 -->
+    <section class="page-header">
+        <div class="container">
+            <div class="section-header">
+                <h1>科研成果</h1>
+                <div class="section-divider"></div>
+            </div>
+            
+            <!-- 标签导航 -->
+            <div class="tabs-navigation">
+                <button class="tab-btn active" onclick="switchTab('publications')">
+                    <i class="fas fa-file-alt"></i> 学术论文
+                </button>
+                <button class="tab-btn" onclick="switchTab('patents')">
+                    <i class="fas fa-certificate"></i> 授权专利
+                </button>
+                <button class="tab-btn" onclick="switchTab('projects')">
+                    <i class="fas fa-project-diagram"></i> 科研项目
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 论文板块 -->
+    <div id="publications-tab" class="tab-content active">
+        <!-- 筛选栏 -->
+        <section class="filter-section">
+            <div class="container">
+                <div class="header-filter-bar">
+                    <div class="filter-group">
+                        <label><i class="fas fa-calendar-alt"></i> 年份：</label>
+                        <select id="yearFilter" onchange="filterPublications()">
+                            <option value="all">全部年份</option>
+                            <option value="2025">2025年</option>
+                            <option value="2024">2024年</option>
+                            <option value="2023">2023年</option>
+                            <option value="2022">2022年</option>
+                            <option value="2021">2021年</option>
+                            <option value="2020">2020年</option>
+                            <option value="2019">2019年</option>
+                            <option value="2018">2018年</option>
+                            <option value="2017">2017年</option>
+                            <option value="2016">2016年</option>
+                            <option value="2015">2015年</option>
+                            <option value="2014">2014年</option>
+                        </select>
+                    </div>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="搜索论文标题、期刊名..." onkeyup="filterPublications()">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- 论文列表 -->
+    <section class="section publications-section">
+        <div class="container">
+            <div id="publicationsList">
+                <!-- 论文将通过JavaScript动态加载 -->
+                <div style="text-align: center; padding: 60px 20px; color: #a0aec0;">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                    <p style="font-size: 1.1rem;">正在加载论文数据...</p>
+                </div>
+            </div>
+
+            <!-- 空状态提示 -->
+            <div id="noResults" style="display: none;" class="no-results">
+                <i class="fas fa-search"></i>
+                <p>未找到符合条件的论文</p>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <!-- 专利板块 -->
+    <div id="patents-tab" class="tab-content">
+        <section class="section">
+            <div class="container">
+                <div class="patents-grid">
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL201910790461.6</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">一种以NGH为媒介的LNG调峰方法</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、陈宸、张国栋、巢昆、孙梦婷</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2024.7.9</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL202211334691.X</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">高效稳定的水凝胶基气体水合物促进剂的制备方法</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、孙梦婷、李畅</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2023.10.24</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL202210578866.5</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">一种连续式水合物法海水淡化装置及方法</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、陈宸、苑浩渝</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2023.8.29</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL202110339614.2</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">一种喷淋式水合物连续反应装置</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、张永涛、陈福林</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2022.6.24</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL201911020600.3</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">一种具有稳定溶液分散性的二维纳米磁子制备方法</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、孙梦婷、张国栋、陈宸</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2021.8.10</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL202010730978.9</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">一种伴生气回收处理装置和方法</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、张国栋</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2021.7.27</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL201911020524.6</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">一种具有稳定溶液分散性的球形纳米磁子及其制备方法</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、孙梦婷、张国栋、陈宸</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2021.7.9</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL202010993795.6</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">一种水合物生产-输运一体式连续反应装置</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、张国栋</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2021.3.12</p>
+                        </div>
+                    </div>
+
+                    <div class="patent-item">
+                        <div class="patent-header">
+                            <span class="patent-number">ZL201811133374.5</span>
+                            <span class="patent-badge">发明专利</span>
+                        </div>
+                        <h3 class="patent-title">天然气水合物纳米促进剂及其制备方法</h3>
+                        <div class="patent-info">
+                            <p><i class="fas fa-users"></i> <strong>发明人：</strong>王飞、何燕、刘丽、陈宸</p>
+                            <p><i class="fas fa-calendar"></i> <strong>授权日期：</strong>2021.1.19</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 项目板块 -->
+    <div id="projects-tab" class="tab-content">
+        <section class="section">
+            <div class="container">
+                <div class="projects-timeline">
+                    <!-- 国家级项目 -->
+                    <div class="project-category">
+                        <h2 class="category-title"><i class="fas fa-flag"></i> 国家级项目</h2>
+                        
+                        <div class="project-item">
+                            <div class="project-badge national">国家自然科学基金</div>
+                            <h3 class="project-title">基于碳纳米管基质的天然气水合物微反应空间构建及作用机理研究</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 面上项目 (21978142)</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2020.1-2023.12</span>
+                                <span><i class="fas fa-dollar-sign"></i> 61万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge national">国家自然科学基金</div>
+                            <h3 class="project-title">天然气水合物纳米促进剂的制备及作用机理研究</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 青年基金 (21706269)</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2018.1-2020.12</span>
+                                <span><i class="fas fa-dollar-sign"></i> 20万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 省部级项目 -->
+                    <div class="project-category">
+                        <h2 class="category-title"><i class="fas fa-building"></i> 省部级项目</h2>
+                        
+                        <div class="project-item">
+                            <div class="project-badge provincial">山东省自然科学基金</div>
+                            <h3 class="project-title">水合物捕碳及储能</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 青年基金A类 (ZR2025QA17)</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2025.10-2028.9</span>
+                                <span><i class="fas fa-dollar-sign"></i> 100万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge provincial">山东省自然科学基金</div>
+                            <h3 class="project-title">天然气水合物</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 优秀青年基金 (ZR2022YQ13)</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2023.1-2025.12</span>
+                                <span><i class="fas fa-dollar-sign"></i> 50万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge provincial">山东省泰山学者</div>
+                            <h3 class="project-title">水合物固态储氢</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 人才工程项目 (tsqn202211159)</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2022.7-2025.6</span>
+                                <span><i class="fas fa-dollar-sign"></i> 75万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge provincial">山东省高校青创团队</div>
+                            <h3 class="project-title">山东省高等学校青创人才引育计划天然气水合物创新团队</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> XM2021A235</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2020.1-2022.12</span>
+                                <span><i class="fas fa-dollar-sign"></i> 200万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge provincial">中国博士后基金</div>
+                            <h3 class="project-title">纳米球固载化表面活性剂对甲烷水合物促进作用研究</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 2017M612370</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2017.8-2019.7</span>
+                                <span><i class="fas fa-dollar-sign"></i> 5万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge provincial">山东省自然科学基金</div>
+                            <h3 class="project-title">基于表面活性剂亲水性基团的甲烷水合物纳米促进剂的制备及作用机理研究</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 博士基金 (ZR2017BB048)</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2017.8-2019.12</span>
+                                <span><i class="fas fa-dollar-sign"></i> 8万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 市厅级项目 -->
+                    <div class="project-category">
+                        <h2 class="category-title"><i class="fas fa-city"></i> 市厅级项目</h2>
+                        
+                        <div class="project-item">
+                            <div class="project-badge municipal">青岛市科技惠民</div>
+                            <h3 class="project-title">新型二氧化碳固态气肥制备技术示范与应用</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 示范专项 (24-1-8-xdny-18-nsh)</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2024.4-2026.3</span>
+                                <span><i class="fas fa-dollar-sign"></i> 60万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge municipal">青岛市产教融合</div>
+                            <h3 class="project-title">低温、低成本、高效有机液态储氢技术研究</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 示范学科项目</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2023.1-2025.12</span>
+                                <span><i class="fas fa-dollar-sign"></i> 50万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 其他/横向项目 -->
+                    <div class="project-category">
+                        <h2 class="category-title"><i class="fas fa-handshake"></i> 其他/横向项目</h2>
+                        
+                        <div class="project-item">
+                            <div class="project-badge horizontal">企业合作</div>
+                            <h3 class="project-title">水合物法二氧化碳捕集催化剂开发</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-building"></i> 万华化学集团</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2025.6-2026.5</span>
+                                <span><i class="fas fa-dollar-sign"></i> 60万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge horizontal">研发中心</div>
+                            <h3 class="project-title">青科大-大兴重工水合物低碳能源装备研发中心</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 横向</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2024.7-2029.6</span>
+                                <span><i class="fas fa-dollar-sign"></i> 50万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge horizontal">横向合作</div>
+                            <h3 class="project-title">海水提溴实验验证</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 横向</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2024.9-2024.11</span>
+                                <span><i class="fas fa-dollar-sign"></i> 30万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge horizontal">横向合作</div>
+                            <h3 class="project-title">水合物法固态天然气存储工艺开发</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 横向</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2022.11-2023.10</span>
+                                <span><i class="fas fa-dollar-sign"></i> 15万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge horizontal">人才引进</div>
+                            <h3 class="project-title">基于水合物媒介的天然气储运调峰技术研究</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 青岛科技大学人才引进启动经费</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2018.9-2023.8</span>
+                                <span><i class="fas fa-dollar-sign"></i> 200万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+
+                        <div class="project-item">
+                            <div class="project-badge horizontal">博士后基金</div>
+                            <h3 class="project-title">基于纳米球载体的天然气水合物纳米促进剂的制备及应用研究</h3>
+                            <div class="project-meta">
+                                <span><i class="fas fa-tag"></i> 中国科学院青岛生物能源与过程研究所优秀博士后奖励基金</span>
+                                <span><i class="fas fa-calendar-alt"></i> 2017.11-2019.10</span>
+                                <span><i class="fas fa-dollar-sign"></i> 20万</span>
+                                <span class="role-tag">主持</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 简洁页脚 -->
+    <footer class="footer-minimal">
+        <div class="container">
+            <div class="footer-content-minimal">
+                <p class="copyright">© 水合物低碳能源研究团队</p>
+                <div class="footer-links">
+                    <a href="https://www.qust.edu.cn" target="_blank">青岛科技大学</a>
+                    <span>|</span>
+                    <a href="https://www.webofscience.com" target="_blank">Web of Science</a>
+                    <span>|</span>
+                    <a href="https://www.cnki.net" target="_blank">CNKI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/publications.js"></script>
+</body>
+</html>
+

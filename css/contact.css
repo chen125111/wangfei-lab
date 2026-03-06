@@ -1,0 +1,263 @@
+/* 联系我们页面样式 */
+
+.contact-section {
+    padding: 60px 0 80px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-top: 40px;
+}
+
+/* 左侧联系信息 */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-card {
+    background: white;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.contact-card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.contact-card-header i {
+    font-size: 2rem;
+    color: var(--accent-color);
+}
+
+.contact-card-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 600;
+}
+
+.contact-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+}
+
+.contact-item > i {
+    font-size: 1.3rem;
+    color: var(--accent-color);
+    width: 30px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.contact-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.contact-details span {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.contact-details a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.contact-details a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* 微信公众号二维码 */
+.qrcode-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.wechat-qrcode {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.qrcode-hint {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+/* 招生招聘卡片 */
+.recruitment-card {
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+    border-radius: 12px;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.recruitment-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.recruitment-card h3 i {
+    font-size: 1.2rem;
+}
+
+.recruitment-card p {
+    line-height: 1.8;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    opacity: 0.95;
+}
+
+.recruitment-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* 右侧地图 */
+.map-container {
+    position: relative;
+}
+
+.map-wrapper {
+    position: sticky;
+    top: 100px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+#map {
+    width: 100%;
+    height: 725px;
+    border-radius: 12px 12px 0 0;
+}
+
+.map-info {
+    padding: 20px;
+    background: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    font-weight: 500;
+    border-top: 1px solid var(--border-color);
+}
+
+.map-info i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .map-wrapper {
+        position: relative;
+        top: 0;
+    }
+
+    #map {
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 40px 0 60px;
+    }
+
+    .contact-card {
+        padding: 25px;
+    }
+
+    .contact-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .contact-item {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 0;
+    }
+
+    .recruitment-card {
+        padding: 25px;
+    }
+
+    #map {
+        height: 350px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-card {
+        padding: 20px;
+    }
+
+    .contact-card-header h3 {
+        font-size: 1.3rem;
+    }
+
+    .recruitment-card {
+        padding: 20px;
+    }
+
+    .recruitment-card h3 {
+        font-size: 1.2rem;
+    }
+
+    #map {
+        height: 300px;
+    }
+}
+
