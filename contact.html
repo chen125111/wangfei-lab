@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 王飞教授课题组</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-menu nav-menu-centered">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="team.html">团队成员</a></li>
+                <li><a href="research.html">研究方向</a></li>
+                <li><a href="publications.html">科研成果</a></li>
+                <li><a href="/management" target="_blank">内部管理</a></li>
+                <li><a href="contact.html" class="active">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 联系我们内容 -->
+    <section class="section contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- 左侧：联系信息 -->
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-item">
+                            <i class="fas fa-address-card"></i>
+                            <div class="contact-details">
+                                <span class="contact-label">联系方式</span>
+                                <span>邮箱：elliot_wang@qust.edu.cn (王飞); chenchen@qust.edu.cn (陈宸)</span>
+                                <span>电话：13954282184 (王飞); 13210082687 (陈宸)</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-globe"></i>
+                            <div class="contact-details">
+                                <span class="contact-label">学术主页</span>
+                                <a href="https://www.researchgate.net/profile/Fei_Wang94" target="_blank">ResearchGate</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fab fa-weixin"></i>
+                            <div class="contact-details">
+                                <span class="contact-label">微信公众号</span>
+                                <div class="qrcode-container">
+                                    <img src="images/wechat-qrcode.jpg" alt="微信公众号二维码" class="wechat-qrcode">
+                                    <p class="qrcode-hint">青科水合物能源</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-details">
+                                <span class="contact-label">通讯地址</span>
+                                <span>山东省青岛市崂山区松岭路99号</span>
+                                <span>青岛科技大学机电工程学院</span>
+                                <span>邮编：266061</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧：地图 -->
+                <div class="map-container">
+                    <div class="map-wrapper">
+                        <div id="map"></div>
+                        <div class="map-info">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <span>青岛科技大学崂山校区 · 机电工程学院</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 简洁页脚 -->
+    <footer class="footer-minimal">
+        <div class="container">
+            <div class="footer-content-minimal">
+                <p class="copyright">© 水合物低碳能源研究团队</p>
+                <div class="footer-links">
+                    <a href="https://www.qust.edu.cn" target="_blank">青岛科技大学</a>
+                    <span>|</span>
+                    <a href="https://www.webofscience.com" target="_blank">Web of Science</a>
+                    <span>|</span>
+                    <a href="https://www.cnki.net" target="_blank">CNKI</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>
+
