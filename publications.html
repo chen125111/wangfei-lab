@@ -56,29 +56,42 @@
         <!-- 筛选栏 -->
         <section class="filter-section">
             <div class="container">
-                <div class="header-filter-bar">
+                <div class="header-filter-bar" role="search">
                     <div class="filter-group">
-                        <label><i class="fas fa-calendar-alt"></i> 年份：</label>
-                        <select id="yearFilter" onchange="filterPublications()">
+                        <label for="yearFilter"><i class="fas fa-calendar-alt"></i> 年份</label>
+                        <select id="yearFilter" aria-label="按年份筛选">
                             <option value="all">全部年份</option>
-                            <option value="2025">2025年</option>
-                            <option value="2024">2024年</option>
-                            <option value="2023">2023年</option>
-                            <option value="2022">2022年</option>
-                            <option value="2021">2021年</option>
-                            <option value="2020">2020年</option>
-                            <option value="2019">2019年</option>
-                            <option value="2018">2018年</option>
-                            <option value="2017">2017年</option>
-                            <option value="2016">2016年</option>
-                            <option value="2015">2015年</option>
-                            <option value="2014">2014年</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="typeFilter"><i class="fas fa-layer-group"></i> 类型</label>
+                        <select id="typeFilter" aria-label="按类型筛选">
+                            <option value="all">全部类型</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="authorFilter"><i class="fas fa-user-friends"></i> 作者</label>
+                        <select id="authorFilter" aria-label="按作者筛选">
+                            <option value="all">全部作者</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="zoneFilter"><i class="fas fa-tag"></i> 分区</label>
+                        <select id="zoneFilter" aria-label="按分区筛选">
+                            <option value="all">全部分区</option>
                         </select>
                     </div>
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="搜索论文标题、期刊名..." onkeyup="filterPublications()">
+                        <input type="text" id="searchInput" placeholder="搜索标题、期刊、作者、DOI...">
                     </div>
+                    <button class="filter-reset" id="resetFilters" type="button">
+                        <i class="fas fa-undo"></i> 重置
+                    </button>
+                </div>
+                <div class="filter-summary" aria-live="polite">
+                    <span id="resultsCount">共 0 篇论文</span>
+                    <span class="filter-note">支持标题、期刊、作者、DOI 检索</span>
                 </div>
             </div>
         </section>

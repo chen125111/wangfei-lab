@@ -8,10 +8,21 @@
 .news-detail-content {
     max-width: 900px;
     margin: 0 auto;
-    background: var(--bg-white);
+    background: var(--card-bg);
     padding: 50px 60px;
     border-radius: 8px;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+}
+
+.news-card {
+    position: relative;
+}
+
+.news-header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .news-meta {
@@ -21,11 +32,23 @@
     padding-bottom: 20px;
     margin-bottom: 30px;
     border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.news-meta-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
 }
 
 .news-meta .news-date {
     color: var(--text-light);
     font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .news-meta .news-date i {
@@ -37,6 +60,9 @@
     text-decoration: none;
     font-size: 0.95rem;
     transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .back-link i {
@@ -53,6 +79,44 @@
     line-height: 1.4;
     margin-bottom: 35px;
     font-weight: 700;
+}
+
+.news-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(26, 35, 126, 0.12);
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.news-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: -8px;
+}
+
+.news-tag {
+    background: var(--bg-light);
+    color: var(--text-dark);
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    border: 1px solid var(--border-color);
+}
+
+.news-summary {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    background: var(--bg-light);
+    padding: 18px 20px;
+    border-radius: 10px;
+    border: 1px dashed var(--border-color);
 }
 
 .news-image-container {
@@ -172,6 +236,15 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
+    }
+
+    .news-tags {
+        gap: 8px;
+    }
+
+    .news-summary {
+        font-size: 0.98rem;
+        padding: 16px;
     }
     
     .recruitment-contact {

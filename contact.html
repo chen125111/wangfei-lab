@@ -37,6 +37,10 @@
                 <!-- 左侧：联系信息 -->
                 <div class="contact-info">
                     <div class="contact-card">
+                        <div class="contact-card-header">
+                            <i class="fas fa-address-card"></i>
+                            <h3>联系信息</h3>
+                        </div>
                         <div class="contact-item">
                             <i class="fas fa-address-card"></i>
                             <div class="contact-details">
@@ -50,7 +54,25 @@
                             <i class="fas fa-globe"></i>
                             <div class="contact-details">
                                 <span class="contact-label">学术主页</span>
-                                <a href="https://www.researchgate.net/profile/Fei_Wang94" target="_blank">ResearchGate</a>
+                                <a href="https://www.researchgate.net/profile/Fei_Wang94" target="_blank" rel="noopener noreferrer">ResearchGate</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-share-alt"></i>
+                            <div class="contact-details">
+                                <span class="contact-label">社交媒体</span>
+                                <div class="social-links">
+                                    <a href="https://www.researchgate.net/profile/Fei_Wang94" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate">
+                                        <i class="fas fa-globe"></i> ResearchGate
+                                    </a>
+                                    <a href="https://www.webofscience.com" target="_blank" rel="noopener noreferrer" aria-label="Web of Science">
+                                        <i class="fas fa-book"></i> Web of Science
+                                    </a>
+                                    <a href="https://www.cnki.net" target="_blank" rel="noopener noreferrer" aria-label="CNKI">
+                                        <i class="fas fa-database"></i> CNKI
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -59,7 +81,7 @@
                             <div class="contact-details">
                                 <span class="contact-label">微信公众号</span>
                                 <div class="qrcode-container">
-                                    <img src="images/wechat-qrcode.jpg" alt="微信公众号二维码" class="wechat-qrcode">
+                                    <img src="images/wechat-qrcode.jpg" alt="微信公众号二维码" class="wechat-qrcode" loading="lazy" decoding="async">
                                     <p class="qrcode-hint">青科水合物能源</p>
                                 </div>
                             </div>
@@ -75,12 +97,41 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="contact-card contact-form-card">
+                        <div class="contact-card-header">
+                            <i class="fas fa-paper-plane"></i>
+                            <h3>联系表单</h3>
+                        </div>
+                        <form class="contact-form" action="mailto:elliot_wang@qust.edu.cn" method="post" enctype="text/plain">
+                            <div class="form-group">
+                                <label for="name">姓名</label>
+                                <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">邮箱</label>
+                                <input type="email" id="email" name="email" placeholder="请输入有效邮箱" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">主题</label>
+                                <input type="text" id="subject" name="subject" placeholder="合作/招生/项目咨询等">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">留言</label>
+                                <textarea id="message" name="message" rows="5" placeholder="请简要描述您的需求" required></textarea>
+                            </div>
+                            <p class="form-hint">提交后将调用本地邮件客户端发送。</p>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> 发送邮件
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
                 <!-- 右侧：地图 -->
                 <div class="map-container">
                     <div class="map-wrapper">
-                        <div id="map"></div>
+                        <div id="map" aria-label="地图位置"></div>
                         <div class="map-info">
                             <i class="fas fa-map-marked-alt"></i>
                             <span>青岛科技大学崂山校区 · 机电工程学院</span>

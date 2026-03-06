@@ -20,6 +20,101 @@
     margin-top: 15px;
 }
 
+/* 研究方向页头区块 */
+.research-hero {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    align-items: center;
+    margin: 40px 0 60px;
+}
+
+.research-hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.research-lead {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    line-height: 1.8;
+}
+
+.research-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+.metric-card {
+    background: var(--bg-light);
+    border-radius: 10px;
+    padding: 16px 18px;
+    border: 1px solid var(--border-color);
+}
+
+.metric-title {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-medium);
+    margin-bottom: 6px;
+}
+
+.metric-value {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.98rem;
+}
+
+.research-figure {
+    background: var(--bg-light);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.research-figure svg {
+    width: 100%;
+    height: auto;
+}
+
+.research-figure figcaption {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--text-medium);
+}
+
+.tech-stack {
+    margin-bottom: 60px;
+    background: var(--bg-light);
+    border-radius: 16px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.tech-title {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+}
+
+.tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.tech-chip {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
 /* 研究方向列表 */
 .research-item {
     display: flex;
@@ -102,6 +197,30 @@
     text-align: justify;
 }
 
+.research-applications {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    margin: 0 0 20px;
+    padding: 0;
+    color: var(--text-dark);
+}
+
+.research-applications li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 0.95rem;
+}
+
+.research-applications li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
 /* 研究亮点 */
 .research-highlights {
     display: flex;
@@ -132,6 +251,10 @@
 
 /* 响应式设计 */
 @media (max-width: 1024px) {
+    .research-hero {
+        grid-template-columns: 1fr;
+    }
+
     .research-item {
         flex-direction: column;
         gap: 20px;
@@ -147,6 +270,10 @@
 @media (max-width: 768px) {
     .research-section {
         padding: 40px 0 60px;
+    }
+
+    .tech-stack {
+        padding: 24px;
     }
     
     .research-item {

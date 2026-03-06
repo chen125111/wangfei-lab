@@ -19,11 +19,12 @@
 }
 
 .contact-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 12px;
     padding: 35px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-shadow);
     transition: box-shadow 0.3s ease;
+    border: 1px solid var(--border-color);
 }
 
 .contact-card:hover {
@@ -102,6 +103,79 @@
     text-decoration: underline;
 }
 
+.social-links {
+    display: grid;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.contact-form {
+    display: grid;
+    gap: 16px;
+}
+
+.form-group {
+    display: grid;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-white);
+    color: var(--text-dark);
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.15);
+}
+
+.form-hint {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.submit-btn {
+    border: none;
+    background: var(--accent-color);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
 /* 微信公众号二维码 */
 .qrcode-container {
     margin-top: 15px;
@@ -163,10 +237,10 @@
 .map-wrapper {
     position: sticky;
     top: 100px;
-    background: white;
+    background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--card-shadow);
 }
 
 #map {
@@ -177,7 +251,7 @@
 
 .map-info {
     padding: 20px;
-    background: white;
+    background: var(--card-bg);
     display: flex;
     align-items: center;
     gap: 12px;
