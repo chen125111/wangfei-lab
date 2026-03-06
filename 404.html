@@ -2,88 +2,21 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="页面未找到 - 王飞教授课题组">
+    <meta name="theme-color" content="#1a237e">
+    <meta name="color-scheme" content="light">
     <title>页面未找到 - 王飞教授课题组</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-            color: white;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 600px;
-        }
-        
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            color: #ffd54f;
-        }
-        
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #1a237e;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        
-        .links {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .links a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        
-        .links a:hover {
-            background-color: rgba(255,255,255,0.1);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="container">
+<body class="page-404">
+    <main class="container" aria-labelledby="error-title">
         <h1>404</h1>
-        <h2>页面未找到</h2>
+        <h2 id="error-title">页面未找到</h2>
         <p>抱歉，您访问的页面不存在或已被移动。</p>
         <a href="index.html" class="btn">返回首页</a>
-        
+
         <div class="links">
             <a href="index.html#about">关于我们</a>
             <a href="index.html#research">研究方向</a>
@@ -91,6 +24,6 @@
             <a href="index.html#publications">科研成果</a>
             <a href="index.html#contact">联系我们</a>
         </div>
-    </div>
+    </main>
 </body>
 </html>
