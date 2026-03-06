@@ -5,73 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>团队成员 - 王飞教授课题组</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/team.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .coming-soon-section {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 80px 0;
-        }
-
-        .coming-soon-content {
-            text-align: center;
-            max-width: 600px;
-            padding: 60px 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-        }
-
-        .coming-soon-icon {
-            font-size: 80px;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .coming-soon-title {
-            font-size: 2rem;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .coming-soon-desc {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .back-home-btn {
-            display: inline-block;
-            padding: 12px 40px;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
-        }
-
-        .back-home-btn:hover {
-            background: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
-        }
-
-        .back-home-btn i {
-            margin-right: 8px;
-        }
-    </style>
 </head>
 <body>
     <!-- 导航栏 -->
@@ -93,25 +28,157 @@
         </div>
     </nav>
 
-    <!-- 开发中提示 -->
-    <section class="coming-soon-section">
-        <div class="container">
-            <div class="coming-soon-content">
-                <div class="coming-soon-icon">
-                    <i class="fas fa-tools"></i>
+    <main>
+        <section class="team-hero">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="main-title">团队成员</h1>
+                    <p class="section-subtitle">聚焦水合物低碳能源领域，打造交叉融合与工程转化并重的创新团队</p>
                 </div>
-                <h1 class="coming-soon-title">功能开发中</h1>
-                <p class="coming-soon-desc">
-                    团队成员页面正在紧张开发中，敬请期待！<br>
-                    我们将很快为您呈现完整的团队信息。
-                </p>
-                <a href="index.html" class="back-home-btn">
-                    <i class="fas fa-home"></i>
-                    返回首页
-                </a>
+
+                <div class="team-stats">
+                    <div class="team-stat">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">教授</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">博士后</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">博士生</span>
+                    </div>
+                    <div class="team-stat">
+                        <span class="stat-number">30+</span>
+                        <span class="stat-label">硕士生</span>
+                    </div>
+                </div>
+
+                <nav class="team-nav" aria-label="团队成员分类导航">
+                    <a href="#professors" class="team-nav-link">教授</a>
+                    <a href="#postdocs" class="team-nav-link">博士后</a>
+                    <a href="#phd" class="team-nav-link">博士生</a>
+                    <a href="#masters" class="team-nav-link">硕士生</a>
+                </nav>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="team-section" id="professors">
+            <div class="container">
+                <div class="team-section-header">
+                    <h2><i class="fas fa-user-tie"></i> 教授</h2>
+                    <p>团队学术带头人，负责科研方向规划与关键技术攻关。</p>
+                </div>
+                <div class="team-cards">
+                    <article class="member-card">
+                        <div class="member-photo" aria-hidden="true">王</div>
+                        <div class="member-info">
+                            <h3>王飞</h3>
+                            <p class="member-role">教授 / 博导 · 课题组负责人</p>
+                            <p class="member-research">研究方向：天然气水合物、低碳能源技术、CO₂捕集与储运</p>
+                            <div class="member-meta">
+                                <span><i class="fas fa-envelope"></i> elliot_wang@qust.edu.cn</span>
+                                <a href="https://www.researchgate.net/profile/Fei_Wang94" target="_blank" rel="noopener noreferrer">
+                                    <i class="fas fa-globe"></i> ResearchGate
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section" id="postdocs">
+            <div class="container">
+                <div class="team-section-header">
+                    <h2><i class="fas fa-user-astronaut"></i> 博士后</h2>
+                    <p>开展前沿研究与技术示范，推动水合物技术工程化应用。</p>
+                </div>
+                <div class="team-cards">
+                    <article class="member-card member-card-group">
+                        <div class="member-photo member-photo-group" aria-hidden="true">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <div class="member-info">
+                            <h3>博士后研究员（1人）</h3>
+                            <p class="member-role">研究方向：水合物动力学、气体分离强化、反应器放大</p>
+                            <ul class="member-list">
+                                <li>合作方向：低碳能源过程强化与装备设计</li>
+                                <li>依托平台：机电工程学院水合物能源团队</li>
+                                <li>咨询邮箱：elliot_wang@qust.edu.cn</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section" id="phd">
+            <div class="container">
+                <div class="team-section-header">
+                    <h2><i class="fas fa-user-graduate"></i> 博士生</h2>
+                    <p>围绕水合物生成、分离与储运等方向开展系统研究。</p>
+                </div>
+                <div class="team-cards">
+                    <article class="member-card member-card-group">
+                        <div class="member-photo member-photo-group" aria-hidden="true">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="member-info">
+                            <h3>博士研究生（5人）</h3>
+                            <p class="member-role">研究方向：水合物反应过程、CO₂捕集与封存、AI建模</p>
+                            <ul class="member-list">
+                                <li>协同课题：水合物生成-分解控制</li>
+                                <li>学习与科研：实验 + 模拟并行推进</li>
+                                <li>详情参见：<a href="news-recruitment.html">招生简章</a></li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-section" id="masters">
+            <div class="container">
+                <div class="team-section-header">
+                    <h2><i class="fas fa-user-graduate"></i> 硕士生</h2>
+                    <p>面向工程应用与科研创新，参与产业化与示范项目。</p>
+                </div>
+                <div class="team-cards">
+                    <article class="member-card member-card-group">
+                        <div class="member-photo member-photo-group" aria-hidden="true">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="member-info">
+                            <h3>硕士研究生（30+）</h3>
+                            <p class="member-role">招生专业：能源、新能源、机械、过控、化工、化学等</p>
+                            <ul class="member-list">
+                                <li>培养方向：气体储运、低碳能源、材料与过程强化</li>
+                                <li>实验条件：水合物中试与工程示范平台</li>
+                                <li>详情参见：<a href="news-recruitment.html">招生简章</a></li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="team-cta">
+            <div class="container">
+                <div class="cta-card">
+                    <div>
+                        <h2>加入我们</h2>
+                        <p>欢迎对水合物低碳能源技术感兴趣的同学加入团队，共同探索能源未来。</p>
+                    </div>
+                    <div class="cta-actions">
+                        <a class="cta-btn" href="news-recruitment.html"><i class="fas fa-file-alt"></i> 招生简章</a>
+                        <a class="cta-btn cta-outline" href="contact.html"><i class="fas fa-envelope"></i> 联系我们</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- 简洁页脚 -->
     <footer class="footer-minimal">

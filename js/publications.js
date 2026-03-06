@@ -128,6 +128,72 @@ const publicationsData = {
 
 let allPublications = [];
 let filteredPublications = [];
+let yearFilter;
+let typeFilter;
+let authorFilter;
+let zoneFilter;
+let searchInput;
+let resetFiltersBtn;
+let resultsCount;
+
+function hasChinese(text) {
+    return /[\u4e00-\u9fa5]/.test(text || '');
+}
+
+function normalizeText(text) {
+    return (text || '').toLowerCase().trim();
+}
+
+function splitAuthors(authors) {
+    return (authors || '')
+        .split(/[,，;；、/]/)
+        .map(name => name.replace(/[*#]/g, '').trim())
+        .filter(Boolean);
+}
+
+function formatAuthors(authors) {
+    return (authors || '')
+        .split(/[,，;；、/]/)
+        .map(name => name.trim())
+        .filter(Boolean)
+        .map(name => {
+            const isCorresponding = name.includes('*');
+            const cleaned = name.replace(/[*#]/g, '').trim();
+            return isCorresponding ? `<strong>${cleaned}</strong>` : cleaned;
+        })
+        .join(', ');
+}
+
+function deriveType(pub) {
+    if (pub.type) return pub.type;
+    const title = normalizeText(pub.title);
+    const reviewKeywords = ['review', 'progress', 'advance', 'overview', 'editorial', 'perspective', 'insight', 'roadmap', '综述', '进展', '展望'];
+    if (reviewKeywords.some(keyword => title.includes(keyword))) {
+        return '综述';
+    }
+    if (hasChinese(pub.title) || hasChinese(pub.journal)) {
+        return '中文期刊';
+    }
+    return '研究论文';
+}
+
+function buildSearchText(pub) {
+    return normalizeText([
+        pub.title,
+        pub.journal,
+        pub.volume,
+        pub.doi,
+        pub.authors,
+        pub._type
+    ].join(' '));
+}
+
+function getZoneClass(zone) {
+    if (!zone) return '';
+    if (zone.includes('1区')) return 'zone-1';
+    if (zone.includes('2区')) return 'zone-2';
+    return 'zone-other';
+}
 
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', async function() {
@@ -135,7 +201,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     // 加载论文数据
     await loadPublications();
-    
+
+    // 初始化筛选控件
+    initFilters();
+    attachFilterEvents();
+
     // 渲染论文列表
     renderPublications();
     
@@ -158,7 +228,16 @@ document.addEventListener('DOMContentLoaded', async function() {
 async function loadPublications() {
     try {
         // 直接使用嵌入的数据
-        allPublications = publicationsData.publications;
+        allPublications = publicationsData.publications.map(pub => {
+            const authorsList = splitAuthors(pub.authors);
+            const derivedType = deriveType(pub);
+            return {
+                ...pub,
+                _authors: authorsList,
+                _type: derivedType,
+                _searchText: buildSearchText({ ...pub, _type: derivedType })
+            };
+        });
         filteredPublications = [...allPublications];
         console.log(`成功加载 ${allPublications.length} 篇论文`);
     } catch (error) {
@@ -172,6 +251,94 @@ async function loadPublications() {
     }
 }
 
+function populateSelect(select, options, labelFormatter) {
+    if (!select) return;
+    options.forEach(option => {
+        const optionEl = document.createElement('option');
+        optionEl.value = option.value;
+        optionEl.textContent = labelFormatter ? labelFormatter(option) : option.label;
+        select.appendChild(optionEl);
+    });
+}
+
+function initFilters() {
+    yearFilter = document.getElementById('yearFilter');
+    typeFilter = document.getElementById('typeFilter');
+    authorFilter = document.getElementById('authorFilter');
+    zoneFilter = document.getElementById('zoneFilter');
+    searchInput = document.getElementById('searchInput');
+    resetFiltersBtn = document.getElementById('resetFilters');
+    resultsCount = document.getElementById('resultsCount');
+
+    const years = Array.from(new Set(allPublications.map(pub => pub.year)))
+        .sort((a, b) => b - a)
+        .map(year => ({ value: String(year), label: `${year}年` }));
+
+    const types = Array.from(new Set(allPublications.map(pub => pub._type)))
+        .sort()
+        .map(type => ({ value: type, label: type }));
+
+    const zones = Array.from(new Set(allPublications.map(pub => pub.zone).filter(Boolean)))
+        .sort()
+        .map(zone => ({ value: zone, label: zone }));
+
+    const authorCounts = {};
+    allPublications.forEach(pub => {
+        pub._authors.forEach(author => {
+            authorCounts[author] = (authorCounts[author] || 0) + 1;
+        });
+    });
+    const authors = Object.entries(authorCounts)
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+        .map(([author, count]) => ({
+            value: author,
+            label: `${author}（${count}）`
+        }));
+
+    populateSelect(yearFilter, years, option => option.label);
+    populateSelect(typeFilter, types, option => option.label);
+    populateSelect(zoneFilter, zones, option => option.label);
+    populateSelect(authorFilter, authors, option => option.label);
+}
+
+function attachFilterEvents() {
+    if (yearFilter) yearFilter.addEventListener('change', filterPublications);
+    if (typeFilter) typeFilter.addEventListener('change', filterPublications);
+    if (authorFilter) authorFilter.addEventListener('change', filterPublications);
+    if (zoneFilter) zoneFilter.addEventListener('change', filterPublications);
+    if (searchInput) {
+        const debouncedFilter = debounce(filterPublications, 200);
+        searchInput.addEventListener('input', debouncedFilter);
+    }
+    if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', resetFilters);
+    }
+}
+
+function resetFilters() {
+    if (yearFilter) yearFilter.value = 'all';
+    if (typeFilter) typeFilter.value = 'all';
+    if (authorFilter) authorFilter.value = 'all';
+    if (zoneFilter) zoneFilter.value = 'all';
+    if (searchInput) searchInput.value = '';
+    filterPublications();
+}
+
+function updateResultsCount() {
+    if (!resultsCount) return;
+    resultsCount.textContent = `共 ${filteredPublications.length} 篇论文`;
+}
+
+function debounce(fn, wait) {
+    let timer;
+    return function () {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(context, args), wait);
+    };
+}
+
 // 渲染论文列表
 function renderPublications() {
     const container = document.getElementById('publicationsList');
@@ -180,10 +347,12 @@ function renderPublications() {
     if (filteredPublications.length === 0) {
         container.innerHTML = '';
         noResults.style.display = 'block';
+        updateResultsCount();
         return;
     }
     
     noResults.style.display = 'none';
+    updateResultsCount();
     
     // 按年份分组
     const groupedByYear = {};
@@ -226,41 +395,71 @@ function renderPublications() {
 // 渲染单篇论文
 function renderPublicationItem(pub) {
     const doiLink = pub.doi ? `https://doi.org/${pub.doi}` : '#';
-    
+
+    const zoneClass = getZoneClass(pub.zone);
+    const authors = formatAuthors(pub.authors);
+
     return `
-        <div class="publication-item" data-zone="${pub.zone}">
+        <article class="publication-item" data-zone="${pub.zone || ''}" data-type="${pub._type || ''}">
             <div class="pub-content">
                 <h3 class="pub-title">
-                    ${pub.title} 
-                    <span class="journal-inline">- (${pub.journal})</span>
+                    ${pub.title}
                 </h3>
+                <p class="pub-authors">${authors}</p>
+                <p class="pub-journal-line">
+                    <span class="journal-inline">${pub.journal}</span>
+                    ${pub.volume ? `<span class="pub-volume"> · ${pub.volume}</span>` : ''}
+                </p>
+                <div class="pub-meta">
+                    <span class="pub-tag"><i class="fas fa-calendar"></i> ${pub.year}</span>
+                    ${pub.zone ? `<span class="pub-tag ${zoneClass}"><i class="fas fa-bolt"></i> ${pub.zone}</span>` : ''}
+                    ${pub.if ? `<span class="pub-tag"><i class="fas fa-chart-line"></i> IF ${pub.if}</span>` : ''}
+                    ${pub._type ? `<span class="pub-tag"><i class="fas fa-layer-group"></i> ${pub._type}</span>` : ''}
+                </div>
                 ${pub.doi ? `
                 <div class="pub-links">
-                    <a href="${doiLink}" target="_blank" class="pub-link">
-                        <i class="fas fa-external-link-alt"></i> 查看完整论文
+                    <a href="${doiLink}" target="_blank" rel="noopener noreferrer" class="pub-link">
+                        <i class="fas fa-external-link-alt"></i> 查看全文（DOI）
                     </a>
                 </div>
                 ` : ''}
             </div>
-        </div>
+        </article>
     `;
 }
 
 // 筛选论文
 function filterPublications() {
-    const yearFilter = document.getElementById('yearFilter').value;
-    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const selectedYear = yearFilter ? yearFilter.value : 'all';
+    const selectedType = typeFilter ? typeFilter.value : 'all';
+    const selectedAuthor = authorFilter ? authorFilter.value : 'all';
+    const selectedZone = zoneFilter ? zoneFilter.value : 'all';
+    const searchValue = normalizeText(searchInput ? searchInput.value : '');
     
     filteredPublications = allPublications.filter(pub => {
         // 年份筛选
-        if (yearFilter !== 'all' && pub.year.toString() !== yearFilter) {
+        if (selectedYear !== 'all' && pub.year.toString() !== selectedYear) {
+            return false;
+        }
+
+        // 类型筛选
+        if (selectedType !== 'all' && pub._type !== selectedType) {
+            return false;
+        }
+
+        // 作者筛选
+        if (selectedAuthor !== 'all' && !pub._authors.includes(selectedAuthor)) {
+            return false;
+        }
+
+        // 分区筛选
+        if (selectedZone !== 'all' && pub.zone !== selectedZone) {
             return false;
         }
         
         // 搜索筛选
-        if (searchInput) {
-            const searchText = (pub.title + ' ' + pub.journal).toLowerCase();
-            if (!searchText.includes(searchInput)) {
+        if (searchValue) {
+            if (!pub._searchText.includes(searchValue)) {
                 return false;
             }
         }
