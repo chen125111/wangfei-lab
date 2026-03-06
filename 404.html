@@ -1,96 +1,132 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>页面未找到 - 王飞教授课题组</title>
+    <title>404 页面未找到 - 王飞教授课题组</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚗️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #1a237e;
+            --primary-light: #283593;
+            --accent: #ffd54f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-            color: white;
-            height: 100vh;
+            font-family: 'Noto Sans SC', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #fff;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            margin: 0;
-            padding: 20px;
+            padding: 2rem;
+            -webkit-font-smoothing: antialiased;
         }
-        
+
         .container {
-            max-width: 600px;
+            max-width: 560px;
+            animation: fadeIn 0.6s ease-out;
         }
-        
-        h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            color: #ffd54f;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
+
+        .error-code {
+            font-size: clamp(5rem, 15vw, 8rem);
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
         h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-        
+
         p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 2rem;
             opacity: 0.9;
+            line-height: 1.7;
         }
-        
+
         .btn {
             display: inline-block;
-            background: white;
-            color: #1a237e;
-            padding: 12px 30px;
-            border-radius: 25px;
+            background: #fff;
+            color: var(--primary);
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 1rem;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
         }
-        
+
         .links {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             justify-content: center;
             flex-wrap: wrap;
         }
-        
+
         .links a {
-            color: white;
+            color: rgba(255, 255, 255, 0.85);
             text-decoration: none;
-            padding: 8px 16px;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
         }
-        
+
         .links a:hover {
-            background-color: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .lab-name {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>404</h1>
+    <main class="container">
+        <div class="error-code">404</div>
         <h2>页面未找到</h2>
-        <p>抱歉，您访问的页面不存在或已被移动。</p>
+        <p>抱歉，您访问的页面不存在或已被移动。<br>请检查网址是否正确，或通过以下链接导航。</p>
         <a href="index.html" class="btn">返回首页</a>
-        
-        <div class="links">
+
+        <nav class="links" aria-label="网站导航">
             <a href="index.html#about">关于我们</a>
             <a href="index.html#research">研究方向</a>
             <a href="index.html#team">团队成员</a>
             <a href="index.html#publications">科研成果</a>
             <a href="index.html#contact">联系我们</a>
-        </div>
-    </div>
+        </nav>
+
+        <p class="lab-name">王飞教授课题组 · 中国石油大学（华东）</p>
+    </main>
 </body>
 </html>
