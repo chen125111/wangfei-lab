@@ -1,7 +1,7 @@
 // 科研成果页面 - 动态加载论文数据
 
-// 标签切换功能
-function switchTab(tabName) {
+// 标签切换功能（通过参数传入事件对象，避免全局 event 依赖）
+function switchTab(evt, tabName) {
     // 隐藏所有标签内容
     const allTabs = document.querySelectorAll('.tab-content');
     allTabs.forEach(tab => tab.classList.remove('active'));
@@ -16,12 +16,24 @@ function switchTab(tabName) {
         selectedTab.classList.add('active');
     }
     
-    // 激活对应的按钮
-    event.target.closest('.tab-btn').classList.add('active');
+    // 激活对应的按钮（使用传入的事件对象）
+    if (evt && evt.target) {
+        const btn = evt.target.closest('.tab-btn');
+        if (btn) btn.classList.add('active');
+    }
 }
 
-// 论文数据（直接嵌入，避免CORS问题）
-const publicationsData = {
+// 防抖函数（减少输入时的频繁筛选，提升性能）
+function debounce(fn, delay) {
+    let timer = null;
+    return function (...args) {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+// 论文数据备用（fetch 失败时使用，保持单一数据源）
+const FALLBACK_DATA = {
   "publications": [
     {"id": 1, "year": 2025, "title": "ML-guided prediction of hydrogen hydrate formation: Guiding experiment design and mechanistic insight", "authors": "Shihao Zhao, Peng Zhang, Guodong Zhang*, Fei Wang*", "journal": "Chemical Engineering Journal", "volume": "2025, 522, 167230", "if": "13.2", "zone": "1区", "doi": "10.1016/j.cej.2025.167230"},
     {"id": 2, "year": 2025, "title": "Multipoint Interfacial Disturbance Driven by Electromagnetic Field for Promoting Methane Hydrate Formation", "authors": "Xiaoming Wang, Zhenxing Hou, Xu Wang, Xinyan Tian, Qing Gao, Chen Chen*, Fei Wang*", "journal": "Langmuir", "volume": "2025", "if": "3.9", "zone": "2区", "doi": "10.1021/acs.langmuir.5c01739"},
@@ -129,11 +141,14 @@ const publicationsData = {
 let allPublications = [];
 let filteredPublications = [];
 
+// 带防抖的筛选函数（300ms 延迟）
+const debouncedFilterPublications = debounce(filterPublications, 300);
+
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', async function() {
     console.log('科研成果页面加载完成');
     
-    // 加载论文数据
+    // 加载论文数据（优先从 JSON 文件加载，单一数据源）
     await loadPublications();
     
     // 渲染论文列表
@@ -154,16 +169,24 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 });
 
-// 加载论文数据
+// 加载论文数据（从 data/publications.json 单一数据源加载）
 async function loadPublications() {
+    const container = document.getElementById('publicationsList');
     try {
-        // 直接使用嵌入的数据
-        allPublications = publicationsData.publications;
+        const response = await fetch('data/publications.json');
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const data = await response.json();
+        allPublications = data.publications || [];
         filteredPublications = [...allPublications];
-        console.log(`成功加载 ${allPublications.length} 篇论文`);
+        console.log(`成功从 JSON 加载 ${allPublications.length} 篇论文`);
     } catch (error) {
-        console.error('加载论文数据失败:', error);
-        document.getElementById('publicationsList').innerHTML = `
+        console.warn('从 JSON 加载失败，使用备用数据:', error.message);
+        allPublications = FALLBACK_DATA.publications || [];
+        filteredPublications = [...allPublications];
+        console.log(`使用备用数据加载 ${allPublications.length} 篇论文`);
+    }
+    if (allPublications.length === 0 && container) {
+        container.innerHTML = `
             <div class="no-results">
                 <i class="fas fa-exclamation-triangle"></i>
                 <p>加载论文数据失败，请刷新页面重试</p>
@@ -223,20 +246,30 @@ function renderPublications() {
     container.innerHTML = html;
 }
 
+// 安全转义 HTML，防止 XSS
+function escapeHtml(str) {
+    if (str == null) return '';
+    const div = document.createElement('div');
+    div.textContent = String(str);
+    return div.innerHTML;
+}
+
 // 渲染单篇论文
 function renderPublicationItem(pub) {
-    const doiLink = pub.doi ? `https://doi.org/${pub.doi}` : '#';
+    // DOI 格式校验，避免注入（合法 DOI 通常以 10. 开头）
+    const safeDoi = pub.doi && /^[\d.]+\/[\w.-]+$/.test(String(pub.doi).trim()) ? pub.doi.trim() : '';
+    const doiLink = safeDoi ? `https://doi.org/${safeDoi}` : '#';
     
     return `
-        <div class="publication-item" data-zone="${pub.zone}">
+        <div class="publication-item" data-zone="${escapeHtml(pub.zone)}">
             <div class="pub-content">
                 <h3 class="pub-title">
-                    ${pub.title} 
-                    <span class="journal-inline">- (${pub.journal})</span>
+                    ${escapeHtml(pub.title)} 
+                    <span class="journal-inline">- (${escapeHtml(pub.journal)})</span>
                 </h3>
-                ${pub.doi ? `
+                ${safeDoi ? `
                 <div class="pub-links">
-                    <a href="${doiLink}" target="_blank" class="pub-link">
+                    <a href="${doiLink}" target="_blank" rel="noopener noreferrer" class="pub-link">
                         <i class="fas fa-external-link-alt"></i> 查看完整论文
                     </a>
                 </div>
@@ -273,3 +306,5 @@ function filterPublications() {
 
 // 导出到全局作用域
 window.filterPublications = filterPublications;
+window.debouncedFilterPublications = debouncedFilterPublications;
+window.switchTab = switchTab;

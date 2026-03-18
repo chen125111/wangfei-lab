@@ -5,9 +5,9 @@
     'use strict';
 
     /* ---------- DOM References ---------- */
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('navMenu');
-    const navLinks = document.querySelectorAll('.nav-links a');
+    const hamburger = document.getElementById('hamburger') || document.querySelector('.navbar .hamburger');
+    const navMenu = document.getElementById('navMenu') || document.querySelector('.navbar .nav-menu');
+    const navLinks = document.querySelectorAll('.nav-links a, .nav-menu a');
     const navbar = document.querySelector('.navbar');
     const backToTop = document.getElementById('backToTop');
     const themeToggle = document.getElementById('themeToggle');
@@ -50,24 +50,28 @@
         }
     }, { passive: true });
 
-    /* ---------- Active Nav Link on Scroll ---------- */
+    /* ---------- Active Nav Link on Scroll (仅首页锚点导航) ---------- */
     var sections = document.querySelectorAll('section[id]');
-    function updateActiveNav() {
-        var scrollPos = window.scrollY + 120;
-        var current = '';
-        sections.forEach(function (section) {
-            if (scrollPos >= section.offsetTop) {
-                current = section.getAttribute('id');
-            }
-        });
-        navLinks.forEach(function (link) {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '#' + current) {
-                link.classList.add('active');
-            }
-        });
+    var firstNavLink = navLinks[0];
+    var isHashNav = firstNavLink && firstNavLink.getAttribute('href').charAt(0) === '#';
+    if (sections.length > 0 && navLinks.length > 0 && isHashNav) {
+        function updateActiveNav() {
+            var scrollPos = window.scrollY + 120;
+            var current = '';
+            sections.forEach(function (section) {
+                if (scrollPos >= section.offsetTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(function (link) {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', updateActiveNav, { passive: true });
     }
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
 
     /* ---------- Back to Top ---------- */
     if (backToTop) {

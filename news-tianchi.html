@@ -10,21 +10,22 @@
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar">
-        <div class="container">
-            <ul class="nav-menu nav-menu-centered">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="team.html">团队成员</a></li>
-                <li><a href="research.html">研究方向</a></li>
-                <li><a href="publications.html">科研成果</a></li>
-                <li><a href="/management" target="_blank">内部管理</a></li>
-                <li><a href="contact.html">联系我们</a></li>
+    <nav class="navbar" role="navigation" aria-label="主导航">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">王飞教授课题组</a>
+            <button class="hamburger" id="hamburger" aria-label="打开菜单" aria-expanded="false" aria-controls="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu nav-menu-centered" id="navMenu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">首页</a></li>
+                <li role="none"><a href="team.html" role="menuitem">团队成员</a></li>
+                <li role="none"><a href="research.html" role="menuitem">研究方向</a></li>
+                <li role="none"><a href="publications.html" role="menuitem">科研成果</a></li>
+                <li role="none"><a href="/management" target="_blank" rel="noopener noreferrer" role="menuitem">内部管理</a></li>
+                <li role="none"><a href="contact.html" role="menuitem">联系我们</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
@@ -61,11 +62,11 @@
             <div class="footer-content-minimal">
                 <p class="copyright">© 水合物低碳能源研究团队</p>
                 <div class="footer-links">
-                    <a href="https://www.qust.edu.cn" target="_blank">青岛科技大学</a>
+                    <a href="https://www.upc.edu.cn" target="_blank" rel="noopener noreferrer">中国石油大学（华东）</a>
                     <span>|</span>
-                    <a href="https://www.webofscience.com" target="_blank">Web of Science</a>
+                    <a href="https://www.webofscience.com" target="_blank" rel="noopener noreferrer">Web of Science</a>
                     <span>|</span>
-                    <a href="https://www.cnki.net" target="_blank">CNKI</a>
+                    <a href="https://www.cnki.net" target="_blank" rel="noopener noreferrer">CNKI</a>
                 </div>
             </div>
         </div>
