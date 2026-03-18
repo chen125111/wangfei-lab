@@ -21,6 +21,12 @@
     --font-main: 'Noto Sans SC', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --radius: 10px;
     --radius-sm: 6px;
+    /* 子页面兼容别名 */
+    --primary-color: var(--primary);
+    --accent-color: var(--accent);
+    --text-dark: var(--text);
+    --text-light: var(--text-secondary);
+    --bg-light: var(--bg);
 }
 
 /* --- Dark Mode --- */
@@ -36,6 +42,12 @@
     --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     --card-shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.4);
     --border-color: #333;
+    /* 子页面变量别名同步 */
+    --primary-color: var(--primary);
+    --accent-color: var(--accent);
+    --text-dark: var(--text);
+    --text-light: var(--text-secondary);
+    --bg-light: var(--bg);
 }
 
 /* --- Reset & Base --- */
@@ -162,6 +174,32 @@ a:hover {
 
 .nav-links a:hover,
 .nav-links a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+/* 子页面导航（nav-menu-centered） */
+.nav-menu.nav-menu-centered {
+    display: flex;
+    list-style: none;
+    gap: 0.25rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu.nav-menu-centered a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition), color var(--transition);
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.nav-menu.nav-menu-centered a:hover,
+.nav-menu.nav-menu-centered a.active {
     background-color: rgba(255, 255, 255, 0.15);
     color: #fff;
 }
@@ -897,12 +935,14 @@ a:hover {
         visibility: visible;
     }
 
-    .nav-links {
+    .nav-links,
+    .nav-menu.nav-menu-centered {
         flex-direction: column;
         gap: 0;
     }
 
-    .nav-links a {
+    .nav-links a,
+    .nav-menu.nav-menu-centered a {
         display: block;
         padding: 0.75rem 1rem;
         border-radius: var(--radius-sm);
