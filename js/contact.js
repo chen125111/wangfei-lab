@@ -1,12 +1,12 @@
 // 联系我们页面 - 地图初始化（使用 Leaflet + OpenStreetMap）
 document.addEventListener('DOMContentLoaded', function() {
-    // 中国石油大学（华东）唐岛湾校区坐标（长江西路66号）
-    const upcLat = 35.942533;
-    const upcLng = 120.176174;
+    // 青岛科技大学崂山校区坐标（松岭路99号）
+    const qustLat = 36.122538;
+    const qustLng = 120.479100;
 
     // 初始化地图
     const map = L.map('map', {
-        center: [upcLat, upcLng],
+        center: [qustLat, qustLng],
         zoom: 16,
         zoomControl: true,
         scrollWheelZoom: true,
@@ -34,20 +34,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 添加标记点
-    const marker = L.marker([upcLat, upcLng], { icon: customIcon }).addTo(map);
+    const marker = L.marker([qustLat, qustLng], { icon: customIcon }).addTo(map);
 
     // 添加弹出信息
     const popupContent = `
         <div style="padding: 10px; min-width: 220px;">
-            <h3 style="margin: 0 0 10px 0; font-size: 16px; color: #333; font-weight: 600;">中国石油大学（华东）</h3>
+            <h3 style="margin: 0 0 10px 0; font-size: 16px; color: #333; font-weight: 600;">青岛科技大学</h3>
             <p style="margin: 5px 0; font-size: 14px; color: #4a90e2;">
-                <strong>化工学院 · 化工实验楼A座301室</strong>
+                <strong>机电工程学院</strong>
             </p>
             <p style="margin: 5px 0; font-size: 13px; color: #666;">
-                📍 山东省青岛市黄岛区长江西路66号
+                📍 山东省青岛市崂山区松岭路99号
             </p>
             <p style="margin: 5px 0; font-size: 13px; color: #666;">
-                📮 邮编：266580
+                📮 邮编：266061
             </p>
         </div>
     `;

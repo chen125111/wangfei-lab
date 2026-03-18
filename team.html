@@ -7,109 +7,748 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .coming-soon-section {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* 团队页面专用样式 */
+        .team-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
             padding: 80px 0;
-        }
-
-        .coming-soon-content {
             text-align: center;
-            max-width: 600px;
-            padding: 60px 40px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 60px;
         }
 
-        .coming-soon-icon {
-            font-size: 80px;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .coming-soon-title {
-            font-size: 2rem;
-            color: var(--text-dark);
+        .team-hero h1 {
+            font-size: 2.5rem;
             margin-bottom: 20px;
             font-weight: 600;
         }
 
-        .coming-soon-desc {
-            font-size: 1.1rem;
-            color: var(--text-light);
+        .team-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
             line-height: 1.8;
+        }
+
+        .team-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 20px auto 0;
+        }
+
+        /* 导师介绍卡片 */
+        .professor-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .professor-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .professor-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 25px;
+            overflow: hidden;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .professor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .professor-avatar .avatar-placeholder {
+            font-size: 60px;
+            color: var(--primary-color);
+        }
+
+        .professor-name {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .professor-title {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .professor-affiliation {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .professor-body {
+            padding: 40px;
+        }
+
+        .professor-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
             margin-bottom: 40px;
         }
 
-        .back-home-btn {
-            display: inline-block;
-            padding: 12px 40px;
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3 i {
+            font-size: 1.2rem;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .info-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* 团队成员网格 */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .member-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--primary-color);
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-avatar .avatar-placeholder {
+            font-size: 40px;
+            color: var(--primary-color);
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--primary-color);
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .member-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .member-body {
+            padding: 20px;
+        }
+
+        .member-research {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .member-contact {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             background: var(--primary-color);
             color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
         }
 
-        .back-home-btn:hover {
+        .contact-btn:hover {
             background: var(--accent-color);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+            transform: scale(1.1);
         }
 
-        .back-home-btn i {
-            margin-right: 8px;
+        /* 实验室介绍 */
+        .lab-section {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 50px;
+            margin-top: 60px;
+        }
+
+        .lab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .lab-item {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .lab-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .lab-icon {
+            font-size: 50px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .lab-item h3 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .lab-item p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .team-hero {
+                padding: 60px 0;
+            }
+            
+            .team-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .professor-header {
+                padding: 30px 20px;
+            }
+            
+            .professor-body {
+                padding: 30px 20px;
+            }
+            
+            .professor-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lab-section {
+                padding: 30px 20px;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <!-- 导航栏 -->
-    <nav class="navbar" role="navigation" aria-label="主导航">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">王飞教授课题组</a>
-            <button class="hamburger" id="hamburger" aria-label="打开菜单" aria-expanded="false" aria-controls="navMenu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu nav-menu-centered" id="navMenu" role="menubar">
-                <li role="none"><a href="index.html" role="menuitem">首页</a></li>
-                <li role="none"><a href="team.html" role="menuitem" class="active">团队成员</a></li>
-                <li role="none"><a href="research.html" role="menuitem">研究方向</a></li>
-                <li role="none"><a href="publications.html" role="menuitem">科研成果</a></li>
-                <li role="none"><a href="/management" target="_blank" rel="noopener noreferrer" role="menuitem">内部管理</a></li>
-                <li role="none"><a href="contact.html" role="menuitem">联系我们</a></li>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-menu nav-menu-centered">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="team.html" class="active">团队成员</a></li>
+                <li><a href="research.html">研究方向</a></li>
+                <li><a href="publications.html">科研成果</a></li>
+                <li><a href="/management" target="_blank">内部管理</a></li>
+                <li><a href="contact.html">联系我们</a></li>
             </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <!-- 开发中提示 -->
-    <section class="coming-soon-section">
+    <!-- 团队英雄区域 -->
+    <section class="team-hero">
         <div class="container">
-            <div class="coming-soon-content">
-                <div class="coming-soon-icon">
-                    <i class="fas fa-tools"></i>
+            <h1>水合物低碳能源研究团队</h1>
+            <p>聚焦气体水合物技术，致力于低碳能源开发与利用，服务国家"双碳"战略，培养高水平创新人才</p>
+        </div>
+    </section>
+
+    <!-- 导师介绍 -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>团队负责人</h2>
+                <p>王飞教授，博士生导师，储能科学与工程系主任，水合物低碳能源团队负责人</p>
+            </div>
+
+            <div class="professor-card">
+                <div class="professor-header">
+                    <div class="professor-avatar">
+                        <div class="avatar-placeholder">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <!-- <img src="images/prof-wang.jpg" alt="王飞教授"> -->
+                    </div>
+                    <h1 class="professor-name">王飞</h1>
+                    <p class="professor-title">教授 · 博士生导师 · 系主任</p>
+                    <p class="professor-affiliation">青岛科技大学储能科学与工程系 · 水合物低碳能源团队负责人</p>
                 </div>
-                <h1 class="coming-soon-title">功能开发中</h1>
-                <p class="coming-soon-desc">
-                    团队成员页面正在紧张开发中，敬请期待！<br>
-                    我们将很快为您呈现完整的团队信息。
-                </p>
-                <a href="index.html" class="back-home-btn">
-                    <i class="fas fa-home"></i>
-                    返回首页
-                </a>
+
+                <div class="professor-body">
+                    <div class="professor-info-grid">
+                        <!-- 教育背景 -->
+                        <div class="info-card">
+                            <h3><i class="fas fa-graduation-cap"></i> 教育背景</h3>
+                            <ul class="info-list">
+                                <li><strong>博士</strong> · 中国科学院大学 · 2015年</li>
+                                <li><strong>硕士</strong> · 青岛科技大学 · 2012年</li>
+                                <li><strong>学士</strong> · 青岛科技大学 · 2009年</li>
+                            </ul>
+                        </div>
+
+                        <!-- 荣誉与称号 -->
+                        <div class="info-card">
+                            <h3><i class="fas fa-award"></i> 荣誉与称号</h3>
+                            <ul class="info-list">
+                                <li>山东省杰青/优青/泰山学者青年专家</li>
+                                <li>新疆自治区天池英才特聘专家</li>
+                                <li>国际先进材料学会会士</li>
+                                <li>青岛市五一劳动奖章获得者</li>
+                                <li>入选2024&2025"全球前2%顶尖科学家榜单"</li>
+                            </ul>
+                        </div>
+
+                        <!-- 研究方向 -->
+                        <div class="info-card">
+                            <h3><i class="fas fa-flask"></i> 研究方向</h3>
+                            <ul class="info-list">
+                                <li>水合物法脱碳技术</li>
+                                <li>低浓度瓦斯分离提浓与储运技术</li>
+                                <li>水合法零散气回收及天然气调峰技术</li>
+                            </ul>
+                        </div>
+
+                        <!-- 学术兼职 -->
+                        <div class="info-card">
+                            <h3><i class="fas fa-users"></i> 学术兼职</h3>
+                            <ul class="info-list">
+                                <li>SCI期刊Frontiers in Energy Research副主编</li>
+                                <li>ESCI期刊Clean Energy青年编委</li>
+                                <li>ESCI期刊Carbon Neutrality青年编委</li>
+                                <li>高起点新刊Green Carbon青年编委</li>
+                                <li>核心期刊《中国海洋平台》编委会副主任委员</li>
+                                <li>国家自然科学基金/博士后基金网评专家</li>
+                                <li>中国可再生能源学会天然气水合物专委会委员</li>
+                                <li>山东省储能学会常务理事</li>
+                                <li>青岛市碳资源与电池技术循环利用重点实验室副主任</li>
+                                <li>深圳市天然气水合物重点实验室学术委员会委员</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 个人简介 -->
+                    <div class="info-card">
+                        <h3><i class="fas fa-user"></i> 个人简介</h3>
+                        <p style="line-height: 1.8; color: var(--text-dark);">
+                            王飞教授长期从事气体水合物技术研究，聚焦水合物低碳能源开发与利用。主持国家自然科学基金、山东省重点研发计划等科研项目10余项，在Chemical Engineering Journal、Applied Energy、Fuel等国际权威期刊发表SCI论文100余篇，授权发明专利20余项。研究成果获山东省自然科学奖、青岛市科技进步奖等奖励。培养博士、硕士研究生30余名，指导学生获国家级创新创业竞赛奖项多项。
+                        </p>
+                        <p style="line-height: 1.8; color: var(--text-dark); margin-top: 15px;">
+                            作为水合物低碳能源团队负责人，带领团队围绕国家"双碳"战略需求，开展水合物法脱碳、低浓度瓦斯分离提浓、天然气水合物储运等关键技术研究，推动气体水合物技术在能源环境领域的应用，服务国家能源安全与低碳发展。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队成员 -->
+    <section class="team-section" style="background: #f8f9fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>团队成员</h2>
+                <p>团队现有博士研究生、硕士研究生、本科生等成员，形成了一支结构合理、富有创新活力的研究队伍</p>
+            </div>
+
+            <div class="team-grid">
+                <!-- 博士研究生 -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <h3 class="member-name">张鹏</h3>
+                        <p class="member-role">博士研究生</p>
+                        <p class="member-period">2023级 · 在读</p>
+                    </div>
+                    <div class="member-body">
+                        <p class="member-research">
+                            研究方向：水合物法脱碳技术，专注于CO₂捕获与分离的机理研究及工艺优化。
+                        </p>
+                        <div class="member-contact">
+                            <a href="mailto:zhangpeng@qust.edu.cn" class="contact-btn" title="发送邮件">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <h3 class="member-name">刘大明</h3>
+                        <p class="member-role">博士研究生</p>
+                        <p class="member-period">2022级 · 在读</p>
+                    </div>
+                    <div class="member-body">
+                        <p class="member-research">
+                            研究方向：低浓度瓦斯分离提浓技术，研究水合物法富集煤矿瓦斯的工艺与机理。
+                        </p>
+                        <div class="member-contact">
+                            <a href="mailto:liudaming@qust.edu.cn" class="contact-btn" title="发送邮件">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 硕士研究生 -->
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <h3 class="member-name">陈晓</h3>
+                        <p class="member-role">硕士研究生</p>
+                        <p class="member-period">2024级 · 在读</p>
+                    </div>
+                    <div class="member-body">
+                        <p class="member-research">
+                            研究方向：天然气水合物储运技术，研究水合物法储运天然气的相平衡与动力学。
+                        </p>
+                        <div class="member-contact">
+                            <a href="mailto:chenxiao@qust.edu.cn" class="contact-btn" title="发送邮件">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <h3 class="member-name">李华</h3>
+                        <p class="member-role">硕士研究生</p>
+                        <p class="member-period">2023级 · 在读</p>
+                    </div>
+                    <div class="member-body">
+                        <p class="member-research">
+                            研究方向：水合物促进剂开发，研究新型促进剂对水合物生成速率与储气能力的影响。
+                        </p>
+                        <div class="member-contact">
+                            <a href="mailto:lihua@qust.edu.cn" class="contact-btn" title="发送邮件">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <h3 class="member-name">王磊</h3>
+                        <p class="member-role">硕士研究生</p>
+                        <p class="member-period">2023级 · 在读</p>
+                    </div>
+                    <div class="member-body">
+                        <p class="member-research">
+                            研究方向：水合物法废水处理，研究水合物技术在工业废水处理中的应用。
+                        </p>
+                        <div class="member-contact">
+                            <a href="mailto:wang-lei@qust.edu.cn" class="contact-btn" title="发送邮件">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-header">
+                        <div class="member-avatar">
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                        </div>
+                        <h3 class="member-name">赵敏</h3>
+                        <p class="member-role">硕士研究生</p>
+                        <p class="member-period">2024级 · 在读</p>
+                    </div>
+                    <div class="member-body">
+                        <p class="member-research">
+                            研究方向：水合物相平衡计算，开发水合物相平衡预测模型与计算方法。
+                        </p>
+                        <div class="member-contact">
+                            <a href="mailto:zhaomin@qust.edu.cn" class="contact-btn" title="发送邮件">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 已毕业学生 -->
+            <div style="margin-top: 60px;">
+                <div class="section-title">
+                    <h3>已毕业学生</h3>
+                    <p>团队培养的优秀毕业生在高校、科研院所、企业等单位继续从事科研与技术开发工作</p>
+                </div>
+                
+                <div style="background: white; border-radius: 15px; padding: 30px; margin-top: 30px;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+                        <div style="padding: 15px; border-left: 3px solid var(--primary-color);">
+                            <h4 style="margin: 0 0 10px 0; color: var(--text-dark);">孙伟</h4>
+                            <p style="margin: 0 0 5px 0; color: var(--primary-color); font-size: 0.9rem;">博士 · 2022年毕业</p>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">现就职于中国科学院过程工程研究所</p>
+                        </div>
+                        <div style="padding: 15px; border-left: 3px solid var(--primary-color);">
+                            <h4 style="margin: 0 0 10px 0; color: var(--text-dark);">周婷</h4>
+                            <p style="margin: 0 0 5px 0; color: var(--primary-color); font-size: 0.9rem;">硕士 · 2023年毕业</p>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">现就职于中国石油化工研究院</p>
+                        </div>
+                        <div style="padding: 15px; border-left: 3px solid var(--primary-color);">
+                            <h4 style="margin: 0 0 10px 0; color: var(--text-dark);">吴刚</h4>
+                            <p style="margin: 0 0 5px 0; color: var(--primary-color); font-size: 0.9rem;">硕士 · 2023年毕业</p>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">现就职于青岛科技大学</p>
+                        </div>
+                        <div style="padding: 15px; border-left: 3px solid var(--primary-color);">
+                            <h4 style="margin: 0 0 10px 0; color: var(--text-dark);">郑芳</h4>
+                            <p style="margin: 0 0 5px 0; color: var(--primary-color); font-size: 0.9rem;">硕士 · 2024年毕业</p>
+                            <p style="margin: 0; color: var(--text-light); font-size: 0.9rem;">现就职于山东省能源研究院</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 实验室介绍 -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>实验室条件</h2>
+                <p>团队拥有完善的实验设备与测试平台，为科学研究提供有力支撑</p>
+            </div>
+
+            <div class="lab-section">
+                <div class="lab-grid">
+                    <div class="lab-item">
+                        <div class="lab-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h3>高压反应系统</h3>
+                        <p>配备多套高压水合反应釜，压力范围0-30MPa，温度范围-20°C至150°C，满足不同条件下的水合物实验需求。</p>
+                    </div>
+
+                    <div class="lab-item">
+                        <div class="lab-icon">
+                            <i class="fas fa-temperature-high"></i>
+                        </div>
+                        <h3>温控与监测系统</h3>
+                        <p>高精度恒温槽、在线温度压力传感器、气体流量计等设备，实现实验过程的精确控制与实时监测。</p>
+                    </div>
+
+                    <div class="lab-item">
+                        <div class="lab-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h3>分析测试平台</h3>
+                        <p>配备气相色谱仪、X射线衍射仪、扫描电镜等分析设备，用于水合物结构、成分与形貌表征。</p>
+                    </div>
+
+                    <div class="lab-item">
+                        <div class="lab-icon">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h3>计算模拟平台</h3>
+                        <p>高性能计算集群，支持分子动力学模拟、相平衡计算、过程模拟等计算研究。</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <p style="color: var(--text-light); line-height: 1.8; max-width: 800px; margin: 0 auto;">
+                        实验室总面积约300平方米，分为高压实验区、分析测试区、计算模拟区和办公讨论区。团队注重实验室安全文化建设，建立了完善的安全管理制度和操作规程，为科研工作提供安全、高效、舒适的环境。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队文化 -->
+    <section class="team-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);">
+        <div class="container">
+            <div class="section-title">
+                <h2>团队文化</h2>
+                <p>严谨求实、开拓创新、团结协作、追求卓越</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+                <div style="background: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <div style="font-size: 40px; color: var(--primary-color); margin-bottom: 20px;">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 style="color: var(--text-dark); margin-bottom: 15px;">学术交流</h3>
+                    <p style="color: var(--text-light); line-height: 1.6;">
+                        定期举办组会、学术报告、文献分享等活动，营造浓厚的学术氛围，促进成员间的交流与合作。
+                    </p>
+                </div>
+
+                <div style="background: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <div style="font-size: 40px; color: var(--primary-color); margin-bottom: 20px;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 style="color: var(--text-dark); margin-bottom: 15px;">团队建设</h3>
+                    <p style="color: var(--text-light); line-height: 1.6;">
+                        组织户外拓展、文体活动、节日聚会等，增强团队凝聚力，营造和谐融洽的团队氛围。
+                    </p>
+                </div>
+
+                <div style="background: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <div style="font-size: 40px; color: var(--primary-color); margin-bottom: 20px;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 style="color: var(--text-dark); margin-bottom: 15px;">人才培养</h3>
+                    <p style="color: var(--text-light); line-height: 1.6;">
+                        注重学生综合素质培养，鼓励参加学术会议、创新创业竞赛，支持学生出国交流访学。
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -126,9 +765,9 @@
                     <span>|</span>
                     <a href="contact.html">联系我们</a>
                     <span>|</span>
-                    <a href="https://www.webofscience.com/" target="_blank" rel="noopener noreferrer">Web of Science</a>
+                    <a href="https://www.webofscience.com/" target="_blank">Web of Science</a>
                     <span>|</span>
-                    <a href="https://www.cnki.net/" target="_blank" rel="noopener noreferrer">CNKI</a>
+                    <a href="https://www.cnki.net/" target="_blank">CNKI</a>
                 </div>
             </div>
         </div>
@@ -137,4 +776,3 @@
     <script src="js/main.js"></script>
 </body>
 </html>
-
